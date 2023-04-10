@@ -7,7 +7,7 @@
 
 Quick edit `hotkeys.xml` file tool
 
-English | 简体中文(README.md)
+English | [简体中文](README.md)
 
 ## Quick Start
 Download latest [Release](https://github.com/Kreedzt/rwr-hotkey-editor/releases), double-click exe to run app.
