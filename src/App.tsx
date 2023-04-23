@@ -23,12 +23,12 @@ function App() {
   }
 
   return (
-    <div className="container">
-      <h1>Welcome to Tauri!</h1>
-      <MenuList>
+    <div className="w-screen h-screen flex">
+      <MenuList className="w-[200px] h-screen">
         <MenuItem icon={<SettingsIcon />}>常规</MenuItem>
         <MenuItem icon={<CutIcon />}>Cut</MenuItem>
       </MenuList>
+      <div className="flex-1 h-screen">Content</div>
     </div>
   );
 }
