@@ -1,32 +1,50 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { invoke } from '@tauri-apps/api/tauri';
-import { MenuItem, MenuList } from '@fluentui/react-components';
+import {
+  MenuCheckedValueChangeData,
+  MenuCheckedValueChangeEvent,
+  MenuItem,
+  MenuList,
+} from '@fluentui/react-components';
 import {
   bundleIcon,
-  CutFilled,
-  CutRegular,
+  HomeRegular,
+  HomeFilled,
   SettingsRegular,
   SettingsFilled,
+  EditSettingsRegular,
+  EditSettingsFilled,
 } from '@fluentui/react-icons';
 import './App.css';
 
-const CutIcon = bundleIcon(CutFilled, CutRegular);
+const HomeIcon = bundleIcon(HomeFilled, HomeRegular);
 const SettingsIcon = bundleIcon(SettingsFilled, SettingsRegular);
+const EditSettingsIcon = bundleIcon(EditSettingsFilled, EditSettingsRegular);
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState('');
-  const [name, setName] = useState('');
+  const [activeKey, setActiveKey] = useState<Record<string, string[]>>({});
 
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    setGreetMsg(await invoke('greet', { name }));
-  }
+  const onMenuClick = useCallback(
+    (e: MenuCheckedValueChangeEvent, data: MenuCheckedValueChangeData) => {
+      console.log('e', e, 'data', data);
+      setActiveKey((prev) => ({
+        ...prev,
+        [data.name]: data.checkedItems,
+      }));
+    },
+    []
+  );
 
   return (
     <div className="w-screen h-screen flex">
-      <MenuList className="w-[200px] h-screen">
+      <MenuList
+        className="w-[200px] h-screen"
+        checkedValues={activeKey}
+        onCheckedValueChange={onMenuClick}
+      >
+        <MenuItem icon={<HomeIcon />}>主页</MenuItem>
+        <MenuItem icon={<EditSettingsIcon />}>编辑热键</MenuItem>
         <MenuItem icon={<SettingsIcon />}>常规</MenuItem>
-        <MenuItem icon={<CutIcon />}>Cut</MenuItem>
       </MenuList>
       <div className="flex-1 h-screen">Content</div>
     </div>
