@@ -3,16 +3,15 @@ import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import Typography from '@mui/material/Typography';
 import ContentCut from '@mui/icons-material/ContentCut';
 import './App.css';
 
 const App: FC = () => {
   return (
     <div className="w-screen h-screen flex">
-      <div className="w-[260px]">
+      <div className="w-[260px] border-r border-grey-500">
         <MenuList>
-          <MenuItem>
+          <MenuItem selected>
             <ListItemIcon>
               <ContentCut fontSize="small" />
             </ListItemIcon>
