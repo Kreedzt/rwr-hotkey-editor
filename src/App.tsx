@@ -1,54 +1,30 @@
-import { useCallback, useState } from 'react';
-import { invoke } from '@tauri-apps/api/tauri';
-import {
-  MenuCheckedValueChangeData,
-  MenuCheckedValueChangeEvent,
-  MenuItem,
-  MenuList,
-} from '@fluentui/react-components';
-import {
-  bundleIcon,
-  HomeRegular,
-  HomeFilled,
-  SettingsRegular,
-  SettingsFilled,
-  EditSettingsRegular,
-  EditSettingsFilled,
-} from '@fluentui/react-icons';
+import { FC } from 'react';
+import MenuList from '@mui/material/MenuList';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Typography from '@mui/material/Typography';
+import ContentCut from '@mui/icons-material/ContentCut';
 import './App.css';
 
-const HomeIcon = bundleIcon(HomeFilled, HomeRegular);
-const SettingsIcon = bundleIcon(SettingsFilled, SettingsRegular);
-const EditSettingsIcon = bundleIcon(EditSettingsFilled, EditSettingsRegular);
-
-function App() {
-  const [activeKey, setActiveKey] = useState<Record<string, string[]>>({});
-
-  const onMenuClick = useCallback(
-    (e: MenuCheckedValueChangeEvent, data: MenuCheckedValueChangeData) => {
-      console.log('e', e, 'data', data);
-      setActiveKey((prev) => ({
-        ...prev,
-        [data.name]: data.checkedItems,
-      }));
-    },
-    []
-  );
-
+const App: FC = () => {
   return (
     <div className="w-screen h-screen flex">
-      <MenuList
-        className="w-[200px] h-screen"
-        checkedValues={activeKey}
-        onCheckedValueChange={onMenuClick}
-      >
-        <MenuItem icon={<HomeIcon />}>主页</MenuItem>
-        <MenuItem icon={<EditSettingsIcon />}>编辑热键</MenuItem>
-        <MenuItem icon={<SettingsIcon />}>常规</MenuItem>
-      </MenuList>
-      <div className="flex-1 h-screen">Content</div>
+      <div className="w-[260px]">
+        <MenuList>
+          <MenuItem>
+            <ListItemIcon>
+              <ContentCut fontSize="small" />
+            </ListItemIcon>
+            <ListItemText>Cut</ListItemText>
+          </MenuItem>
+        </MenuList>
+      </div>
+      <div className="flex-1 h-screen p-2">
+        <p>Content</p>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
