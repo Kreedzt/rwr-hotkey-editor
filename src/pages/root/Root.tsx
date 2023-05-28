@@ -14,15 +14,17 @@ const Root: FC<RootProps> = () => {
     <div className="w-screen h-screen flex">
       <div className="w-[260px] border-r border-grey-500">
         <MenuList>
-          {routes.map((r) => (
-            <NavLink to={r.path} key={r.path}>
-              {({ isActive }) => (
-                <MenuItem key={r.path} selected={isActive}>
-                  <ListItemText>{r.name}</ListItemText>
-                </MenuItem>
-              )}
-            </NavLink>
-          ))}
+          {routes
+            .filter((r) => r.hidden !== true)
+            .map((r) => (
+              <NavLink to={r.path} key={r.path}>
+                {({ isActive }) => (
+                  <MenuItem key={r.path} selected={isActive}>
+                    <ListItemText>{r.name}</ListItemText>
+                  </MenuItem>
+                )}
+              </NavLink>
+            ))}
         </MenuList>
       </div>
       <div className="flex-1 h-screen p-2">
