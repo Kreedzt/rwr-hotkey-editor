@@ -36,7 +36,6 @@ export class StoreService {
   }
 
   async load() {
-    // await this.getRWRConfigPath();
     const hotkeysFile = await this.getHotKeysPath();
     console.log('hotkeysFile', hotkeysFile);
   }
