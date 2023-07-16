@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { IHotkeyProfileList } from '../../share/types';
+import { IHotkeyConfig, IHotkeyProfileItem } from '../../share/types';
 
 type HotkeyListItemProps = {
-  data: IHotkeyProfileList;
+  data: IHotkeyProfileItem[];
 };
 
 const HotkeyListItem: FC<HotkeyListItemProps> = ({ data }) => {

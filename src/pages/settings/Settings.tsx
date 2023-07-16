@@ -10,7 +10,7 @@ type SettingsProps = {
 
 const Settings: FC<SettingsProps> = () => {
   useEffect(() => {
-    StoreService.getSelf().load();
+    StoreService.getSelf().loadRaw();
   }, []);
 
   return (
