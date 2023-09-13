@@ -1,5 +1,5 @@
 import React, { FC, useCallback } from 'react';
-import HotkeyListItem from '../../components/hotkey/HotkeyListItem';
+import HotkeyConfigItem from '../../components/hotkey/HotkeyConfigItem';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { useDashboardContext } from './DashboardContext';
@@ -24,7 +24,7 @@ const ListState: FC<ListStateProps> = () => {
       </Grid>
       <Grid container>
         <Grid item xs={12}>
-          <HotkeyListItem data={[]} />
+          <HotkeyConfigItem data={[]} />
         </Grid>
       </Grid>
     </div>

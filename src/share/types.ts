@@ -13,6 +13,7 @@ export interface IHotkeyRawConfig {
 }
 
 export interface IHotkeyConfigItem {
+  id: string;
   label: string;
   value: string;
 }
