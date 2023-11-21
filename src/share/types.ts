@@ -12,12 +12,16 @@ export interface IHotkeyRawConfig {
   };
 }
 
+// 单项 hotkey 配置
 export interface IHotkeyConfigItem {
   id: string;
+  // 描述
   label: string;
+  // 热键值
   value: string;
 }
 
+// 单项 hotkeys.xml 文件配置
 export interface IHotkeyProfileItem {
   id: string;
   title: string;

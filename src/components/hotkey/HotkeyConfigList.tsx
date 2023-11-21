@@ -9,7 +9,7 @@ type HotkeyListProps = {
 const HotkeyConfigList: FC<HotkeyListProps> = ({ data }) => {
   return (
     <div>
-      <p>HKList</p>
+      <p>HotkeyConfigList:</p>
       {data.map((d) => {
         return <HotkeyConfigItem key={d.id} data={d} />;
       })}

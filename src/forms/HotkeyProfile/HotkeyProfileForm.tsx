@@ -27,7 +27,7 @@ const HotkeyProfileForm: FC<HotkeyProfileFormProps> = ({ item }) => {
       <p>HotkeyProfileForm</p>
 
       <TextField required label="标题" variant="outlined" />
-      <TextField multiline label="描述" variant="outlined" />
+      <TextField required label="内容" variant="outlined" />
       <HotkeyConfigList data={MOCK_DATA} />
     </Box>
   );

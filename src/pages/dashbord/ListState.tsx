@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import { useDashboardContext } from './DashboardContext';
 import { DashboardVisibleTypeEnum } from './enums';
 import { observer } from 'mobx-react-lite';
+import { IHotkeyConfigItem } from '../../share/types';
 
 type ListStateProps = {
   // onAdd: () => void;
@@ -24,7 +25,13 @@ const ListState: FC<ListStateProps> = () => {
       </Grid>
       <Grid container>
         <Grid item xs={12}>
-          <HotkeyConfigItem data={[]} />
+          <HotkeyConfigItem
+            data={{
+              id: '1',
+              label: 'label1',
+              value: 'value1',
+            }}
+          />
         </Grid>
       </Grid>
     </div>
