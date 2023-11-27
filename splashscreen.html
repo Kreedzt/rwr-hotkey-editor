@@ -1,0 +1,51 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Loading</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <style type="text/css" media="screen">
+         body {
+             background-color: #263038;
+             width: 100vw;
+             height: 100vh;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             margin: 0;
+         }
+         #root {
+             color: #fff;
+         }
+        </style>
+
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">
+            You are using an <strong>outdated</strong> browser. Please
+            <a href="http://browsehappy.com/">upgrade your browser</a> to improve
+            your experience.
+            </p>
+        <![endif]-->
+
+        <div id="root">
+            <h4>RWR Hotkey Editor</h4>
+        </div>
+
+        <script type="text/javascript">
+         console.log('This is in splashscreen');
+         const invoke = window.__TAURI_INVOKE__;
+
+         document.addEventListener('DOMContentLoaded', () => {
+             invoke('close_splashscreen');
+         });
+        </script>
+    </body>
+</html>

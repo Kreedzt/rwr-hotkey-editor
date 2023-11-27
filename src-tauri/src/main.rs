@@ -1,6 +1,13 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 use std::{fs, io, path::Path};
+use tauri::{Manager, Window};
+
+#[tauri::command]
+async fn close_splashscreen(window: Window) {
+    window.get_window("splashscreen").expect("no splash window found").close().unwrap();
+    window.get_window("main").expect("no main window found").show().unwrap();
+}
 
 #[tauri::command]
 fn check_file_exists(path: &str) -> Result<bool, ()> {
@@ -28,6 +35,7 @@ fn write_string_to_file(path: &str, content: &str) -> Result<(), String>{
 fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
+            close_splashscreen,
             check_file_exists,
             read_file_to_string,
             write_string_to_file

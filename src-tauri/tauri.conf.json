@@ -56,7 +56,18 @@
         "resizable": true,
         "title": "rwr-hotkey-editor",
         "width": 1024,
-        "height": 768
+        "height": 768,
+        "visible": false
+      },
+      {
+        "fullscreen": false,
+        "resizable": true,
+        "title": "rwr-hotkey-editor",
+        "url": "splashscreen.html",
+        "label": "splashscreen",
+        "width": 1024,
+        "height": 768,
+        "decorations": false
       }
     ]
   }

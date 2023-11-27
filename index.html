@@ -4,11 +4,51 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tauri + React + TS</title>
+    <title>RWR Hotkey Editor</title>
+
+    <style type="text/css" media="screen">
+     body {
+       margin: 0;
+     }
+
+     #loading-wrapper {
+       background-color: #263038;
+       width: 100vw;
+       height: 100vh;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       margin: 0;
+     }
+     #loading {
+       width: 48px;
+       height: 48px;
+       border: 5px solid #FFF;
+       border-bottom-color: transparent;
+       border-radius: 50%;
+       display: inline-block;
+       box-sizing: border-box;
+       animation: rotation 1s linear infinite;
+     }
+
+     @keyframes rotation {
+       0% {
+         transform: rotate(0deg);
+       }
+       100% {
+         transform: rotate(360deg);
+       }
+     }
+    </style>
+
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div id="loading-wrapper">
+        <div id="loading"></div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

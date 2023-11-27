@@ -1,5 +1,7 @@
-import React, { FC, useState } from 'react';
-import { Typography } from '@mui/material';
+import React, { FC, useCallback, useState } from 'react';
+import { redirect } from 'react-router-dom';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import { nanoid } from 'nanoid';
 import HotkeyProfileForm from '../../forms/HotkeyProfile/HotkeyProfileForm';
 import { IHotkeyProfileItem } from '../../share/types';
@@ -30,8 +32,16 @@ const getInitData = (): IHotkeyProfileItem => {
 const AddState: FC<AddStateProps> = () => {
   const [config, setConfig] = useState<IHotkeyProfileItem>(getInitData());
 
+  const onSave = useCallback(() => {
+    console.log('onSave.');
+    redirect('dashboard');
+  }, [config]);
+
   return (
     <div>
+      <Button onClick={onSave}>
+        保存
+      </Button>
       <Typography variant="h4">AddState</Typography>
       <HotkeyProfileForm item={config} />
     </div>
