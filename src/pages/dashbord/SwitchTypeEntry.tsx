@@ -1,19 +1,19 @@
 import React, { FC } from 'react';
 import { useDashboardContext } from './DashboardContext';
-import { observer } from 'mobx-react-lite';
 import { DashboardVisibleTypeEnum } from './enums';
 import AddState from './AddState';
 import EditState from './EditState';
 import ListState from './ListState';
+import { activeType } from './store';
 
 type SwitchTypeEntryProps = {
   //
 };
 
 const SwitchTypeEntry: FC<SwitchTypeEntryProps> = () => {
-  const { store } = useDashboardContext();
+  const active = activeType.value;
 
-  switch (store.activeType) {
+  switch (active) {
     case DashboardVisibleTypeEnum.ADD:
       return <AddState />;
     case DashboardVisibleTypeEnum.EDIT:
@@ -23,4 +23,4 @@ const SwitchTypeEntry: FC<SwitchTypeEntryProps> = () => {
   }
 };
 
-export default observer(SwitchTypeEntry);
+export default SwitchTypeEntry;

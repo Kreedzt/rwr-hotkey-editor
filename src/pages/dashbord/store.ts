@@ -1,4 +1,3 @@
-import { makeAutoObservable } from 'mobx';
 import { DashboardVisibleTypeEnum } from './enums';
 import { nanoid } from 'nanoid';
 import {
@@ -8,68 +7,41 @@ import {
 } from '../../share/types';
 import { StoreServiceInst } from '../../services/store';
 import { getInitConfig } from '../../share/utils';
+import { signal } from '@preact/signals-react';
 
-export class DashboardStore {
-  activeType: DashboardVisibleTypeEnum = DashboardVisibleTypeEnum.LIST;
+export const hotKeyConfig = signal<IHotkeyConfig>(getInitConfig());
 
-  data: IHotkeyConfig = getInitConfig();
+export const activeType = signal<DashboardVisibleTypeEnum>(DashboardVisibleTypeEnum.LIST);
 
-  constructor() {
-    makeAutoObservable(this);
-  }
+const saveProfile = async () => {
+  await StoreServiceInst.updateConfig(hotKeyConfig.value);
+}
 
-  updateActiveType(next: DashboardVisibleTypeEnum) {
-    this.activeType = next;
-  }
+export const createProfile = async (profile: IHotKeyProfileCreateItem) => {
+  const newProfile: IHotkeyProfileItem = {
+    ...profile,
+    id: nanoid(),
+  };
 
-  async createProfile(profile: IHotKeyProfileCreateItem) {
-    const newProfile: IHotkeyProfileItem = {
-      ...profile,
-      id: nanoid(),
-    };
+  hotKeyConfig.value.hotkeys = [...hotKeyConfig.value.hotkeys,newProfile];
 
-    this.data.hotkeys.push(newProfile);
+  await saveProfile();
+}
 
-    await this.saveProfile();
-  }
+export const updateProfile = async (profile: IHotkeyProfileItem) => {
+  hotKeyConfig.value.hotkeys = hotKeyConfig.value.hotkeys.map((item) => {
+    if (item.id === profile.id) {
+      return profile;
+    }
 
-  async updateProfile(profile: IHotkeyProfileItem) {
-    this.data.hotkeys = this.data.hotkeys.map((item) => {
-      if (item.id === profile.id) {
-        return profile;
-      }
+    return item;
+  });
 
-      return item;
-    });
+  await saveProfile();
+}
 
-    await this.saveProfile();
-  }
+export const deleteProfile = async (id: string) => {
+  hotKeyConfig.value.hotkeys = hotKeyConfig.value.hotkeys.filter((item) => item.id !== id);
 
-  /**
-   * 刷新配置, 从文件中读取
-   */
-  async refreshProfile() {
-    //
-  }
-
-  /**
-   * 保存配置, 写入到文件中
-   */
-  async saveProfile() {
-    await StoreServiceInst.updateConfig(this.data);
-  }
-
-  async deleteProfile(id: string) {
-    this.data.hotkeys = this.data.hotkeys.filter((item) => item.id !== id);
-
-    await this.saveProfile();
-  }
-
-  async sortProfile() {
-    //
-  }
-
-  activeProfile(id: string) {
-    //
-  }
+  await saveProfile();
 }

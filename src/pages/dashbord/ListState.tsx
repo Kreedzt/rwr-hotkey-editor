@@ -2,20 +2,17 @@ import React, { FC, useCallback } from 'react';
 import HotkeyConfigItem from '../../components/hotkey/HotkeyConfigItem';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import { useDashboardContext } from './DashboardContext';
 import { DashboardVisibleTypeEnum } from './enums';
-import { observer } from 'mobx-react-lite';
 import { IHotkeyConfigItem } from '../../share/types';
+import { activeType } from './store';
 
 type ListStateProps = {
   // onAdd: () => void;
 };
 
 const ListState: FC<ListStateProps> = () => {
-  const { store } = useDashboardContext();
-
   const onAddClick = useCallback(() => {
-    store.updateActiveType(DashboardVisibleTypeEnum.ADD);
+    activeType.value = DashboardVisibleTypeEnum.ADD;
   }, []);
 
   return (
@@ -38,4 +35,4 @@ const ListState: FC<ListStateProps> = () => {
   );
 };
 
-export default observer(ListState);
+export default ListState;

@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import SwitchTypeEntry from './SwitchTypeEntry';
-import DashboardProvider from './DashboardContext';
 
 type DashboardProps = {
   //
@@ -8,9 +7,7 @@ type DashboardProps = {
 
 const Dashboard: FC<DashboardProps> = () => {
   return (
-    <DashboardProvider>
-      <SwitchTypeEntry />
-    </DashboardProvider>
+    <SwitchTypeEntry />
   );
 };
 
