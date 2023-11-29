@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useState } from 'react';
-import { RJSFSchema, UiSchema } from '@rjsf/utils';
+import { RJSFSchema, UiSchema, RegistryFieldsType, FieldProps } from '@rjsf/utils';
 import validator from '@rjsf/validator-ajv8';
 import Form from '@rjsf/mui';
 import Box from '@mui/material/Box';
@@ -13,19 +13,26 @@ type HotkeyProfileFormProps = {
 type FormData = Omit<IHotkeyProfileItem, 'id'>;
 
 const schema: RJSFSchema = {
-  title: '',
   type: 'object',
   required: ['title', 'config'],
   properties: {
+    id: {
+      type: 'string',
+      title: 'ID'
+    },
     title: {
       type: 'string',
       title: '标题'
     },
     config: {
       type: 'array',
+      title: '热键集列表',
+      minItems: 1,
+      maxItems: 10,
       items: {
         type: 'object',
         required: ['value'],
+        title: '热键',
         properties: {
           value: {
             type: 'string',
@@ -42,9 +49,27 @@ const schema: RJSFSchema = {
 };
 
 const uiSchema: UiSchema = {
-  'ui:globalOptions': {
-    /* si */
-  }
+  id: {
+    'ui:widget': 'hidden'
+  },
+};
+
+const CustomArraySchemaField: FC<FieldProps> = (props) => {
+  const { index, registry, schema } = props;
+  const { SchemaField } = registry.fields;
+
+  const title = `${schema.title} ${index + 1}`;
+
+  const mergedSchema = {
+    ...schema,
+    title
+  };
+
+  return <SchemaField {...props} schema={mergedSchema} />;
+}
+
+const fields: RegistryFieldsType = {
+  ArraySchemaField: CustomArraySchemaField
 };
 
 const HotkeyProfileForm: FC<HotkeyProfileFormProps> = ({ item }) => {
@@ -59,7 +84,8 @@ const HotkeyProfileForm: FC<HotkeyProfileFormProps> = ({ item }) => {
         validator={validator}
         formData={item}
         uiSchema={uiSchema}
-        onSubmit={onSubmit}
+        fields={fields}
+        onSubmit={({ formData }) => onSubmit(formData)}
       />
     </Box>
   );

@@ -24,10 +24,10 @@ const Root: FC<RootProps> = () => {
                   </MenuItem>
                 )}
               </NavLink>
-            ))}
+          ))}
         </MenuList>
       </div>
-      <div className="flex-1 h-screen p-2">
+      <div className="flex-1 h-screen p-2 overflow-y-auto">
         <Outlet />
       </div>
     </div>
