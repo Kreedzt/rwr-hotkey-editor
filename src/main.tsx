@@ -10,7 +10,6 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import './index.css';
 import Root from './pages/root/Root';
-import Dashboard from './pages/dashbord/Dashboard';
 import { routes } from './routes';
 
 const router = createBrowserRouter([
