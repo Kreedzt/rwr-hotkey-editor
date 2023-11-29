@@ -1,5 +1,7 @@
-import React, { FC, useState } from 'react';
-import { TextField } from '@mui/material';
+import React, { FC, useCallback, useState } from 'react';
+import { RJSFSchema, UiSchema } from '@rjsf/utils';
+import validator from '@rjsf/validator-ajv8';
+import Form from '@rjsf/mui';
 import Box from '@mui/material/Box';
 import HotkeyConfigList from '../../components/hotkey/HotkeyConfigList';
 import { IHotkeyConfigItem, IHotkeyProfileItem } from '../../share/types';
@@ -8,27 +10,57 @@ type HotkeyProfileFormProps = {
   item: IHotkeyProfileItem;
 };
 
-const MOCK_DATA: IHotkeyConfigItem[] = [
-  {
-    id: '1',
-    label: 'label1',
-    value: 'value1',
-  },
-  {
-    id: '2',
-    label: 'label2',
-    value: 'value2',
-  },
-];
+type FormData = Omit<IHotkeyProfileItem, 'id'>;
+
+const schema: RJSFSchema = {
+  title: '',
+  type: 'object',
+  required: ['title', 'config'],
+  properties: {
+    title: {
+      type: 'string',
+      title: '标题'
+    },
+    config: {
+      type: 'array',
+      items: {
+        type: 'object',
+        required: ['value'],
+        properties: {
+          value: {
+            type: 'string',
+            'title': '内容'
+          },
+          label: {
+            type: 'string',
+            title: '备注'
+          },
+        }
+      }
+    }
+  }
+};
+
+const uiSchema: UiSchema = {
+  'ui:globalOptions': {
+    /* si */
+  }
+};
 
 const HotkeyProfileForm: FC<HotkeyProfileFormProps> = ({ item }) => {
-  return (
-    <Box component="form" autoComplete="off">
-      <p>HotkeyProfileForm</p>
+  const onSubmit = useCallback((v: FormData) => {
+    console.log('onSubmit', v);
+  }, []);
 
-      <TextField required label="标题" variant="outlined" />
-      <TextField required label="内容" variant="outlined" />
-      <HotkeyConfigList data={MOCK_DATA} />
+  return (
+    <Box p={2}>
+      <Form
+        schema={schema}
+        validator={validator}
+        formData={item}
+        uiSchema={uiSchema}
+        onSubmit={onSubmit}
+      />
     </Box>
   );
 };

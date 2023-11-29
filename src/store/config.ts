@@ -4,14 +4,12 @@ import {
   IHotKeyProfileCreateItem,
   IHotkeyProfileItem,
   IHotkeyConfig,
-} from '../../share/types';
-import { StoreServiceInst } from '../../services/store';
-import { getInitConfig } from '../../share/utils';
+} from '../share/types';
+import { StoreServiceInst } from '../services/store';
+import { getInitConfig } from '../share/utils';
 import { signal } from '@preact/signals-react';
 
 export const hotKeyConfig = signal<IHotkeyConfig>(getInitConfig());
-
-export const activeType = signal<DashboardVisibleTypeEnum>(DashboardVisibleTypeEnum.LIST);
 
 const saveProfile = async () => {
   await StoreServiceInst.updateConfig(hotKeyConfig.value);

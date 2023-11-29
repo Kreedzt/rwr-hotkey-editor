@@ -65,8 +65,8 @@
         "title": "rwr-hotkey-editor",
         "url": "splashscreen.html",
         "label": "splashscreen",
-        "width": 1024,
-        "height": 768,
+        "width": 400,
+        "height": 200,
         "decorations": false
       }
     ]

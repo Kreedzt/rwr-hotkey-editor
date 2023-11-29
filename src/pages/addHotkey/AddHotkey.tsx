@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useState } from 'react';
-import { redirect } from 'react-router-dom';
+import { redirect, Link } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { nanoid } from 'nanoid';
@@ -13,39 +13,33 @@ type AddStateProps = {
 const getInitData = (): IHotkeyProfileItem => {
   return {
     id: nanoid(),
-    title: '新增配置',
+    title: '新增热键集',
     config: [
       {
-        id: '1',
-        label: 'label1',
-        value: 'value1',
-      },
-      {
-        id: '2',
-        label: 'label2',
-        value: 'value2',
-      },
+        label: '释放技能',
+        value: '/skill',
+      }
     ],
   };
 };
 
-const AddState: FC<AddStateProps> = () => {
+const AddHotkey: FC<AddStateProps> = () => {
   const [config, setConfig] = useState<IHotkeyProfileItem>(getInitData());
 
-  const onSave = useCallback(() => {
-    console.log('onSave.');
-    redirect('dashboard');
-  }, [config]);
+  const onSubmit = useCallback(() => {
+    console.log('AddState: onSubmit');
+  }, []);
 
   return (
     <div>
-      <Button onClick={onSave}>
-        保存
-      </Button>
-      <Typography variant="h4">AddState</Typography>
+      <Link to="/dashboard">
+        <Button variant="outlined">返回</Button>
+      </Link>
+
+      <Typography variant="h4">添加热键集</Typography>
       <HotkeyProfileForm item={config} />
     </div>
   );
 };
 
-export default AddState;
+export default AddHotkey;
