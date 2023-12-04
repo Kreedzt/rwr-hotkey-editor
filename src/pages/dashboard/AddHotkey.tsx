@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import { nanoid } from 'nanoid';
 import HotkeyProfileForm from '../../forms/HotkeyProfile/HotkeyProfileForm';
 import { IHotkeyProfileItem } from '../../share/types';
+import { createProfile } from '../../store/config';
 
 type AddStateProps = {
   //
@@ -26,8 +27,10 @@ const getInitData = (): IHotkeyProfileItem => {
 const AddHotkey: FC<AddStateProps> = () => {
   const [config, setConfig] = useState<IHotkeyProfileItem>(getInitData());
 
-  const onSubmit = useCallback(() => {
-    console.log('AddState: onSubmit');
+  const onSubmit = useCallback(async (v: IHotkeyProfileItem) => {
+    console.log('AddState: onSubmit', v);
+    await createProfile(v);
+    redirect('/dashboard');
   }, []);
 
   return (
@@ -37,7 +40,7 @@ const AddHotkey: FC<AddStateProps> = () => {
       </Link>
 
       <Typography variant="h4">添加热键集</Typography>
-      <HotkeyProfileForm item={config} />
+      <HotkeyProfileForm item={config} onSubmit={onSubmit} />
     </div>
   );
 };

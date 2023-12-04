@@ -23,6 +23,29 @@ export class StoreService {
     return this.instance;
   }
 
+  /**
+   * 初始化配置文件
+   */
+  async initConfigFile() {
+    const touchFile = await path.join(await path.appConfigDir(), CONFIG_FILE_NAME);
+
+    const sep = path.sep;
+
+    const pathRoute = touchFile.split(sep);
+
+    const lastFolder = pathRoute.slice(0, -1);
+    const lastFolderRoute = lastFolder.join(sep);
+
+    if (!await fs.exists(lastFolderRoute)) {
+      await fs.createDir(lastFolderRoute);
+      console.log('initConfigFile: create default folder success');
+    }
+
+    if (!await fs.exists(touchFile)) {
+      await this.resetConfig();
+    }
+  }
+
   async getRWRConfigPath() {
     const configDir = await path.appConfigDir();
     const rwrConfigFolder = await path.join(

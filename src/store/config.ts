@@ -15,7 +15,13 @@ const saveProfile = async () => {
   await StoreServiceInst.updateConfig(hotKeyConfig.value);
 }
 
-export const createProfile = async (profile: IHotKeyProfileCreateItem) => {
+export const initConfig = async () => {
+  await StoreServiceInst.initConfigFile();
+  const recordConfig = await StoreServiceInst.loadConfig();
+  hotKeyConfig.value = recordConfig;
+}
+
+export const createProfile = async (profile: IHotkeyProfileItem) => {
   const newProfile: IHotkeyProfileItem = {
     ...profile,
     id: nanoid(),

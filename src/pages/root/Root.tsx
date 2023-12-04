@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
+import { initConfig } from '../../store/config';
 import { routes } from '../../routes';
 
 type RootProps = {
@@ -10,6 +11,8 @@ type RootProps = {
 };
 
 const Root: FC<RootProps> = () => {
+  initConfig();
+
   return (
     <div className="w-screen h-screen flex">
       <div className="w-[260px] border-r border-grey-500">

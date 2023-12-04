@@ -1,4 +1,4 @@
-import { RouteObject } from 'react-router-dom';
+import { Navigate, RouteObject } from 'react-router-dom';
 import Dashboard from './pages/dashboard/Dashboard';
 import HotkeyList from './pages/dashboard/HotkeyList';
 import AddHotkey from './pages/dashboard/AddHotkey';
@@ -36,7 +36,7 @@ export const routes: IRouteDefine[] = [
         hidden: true,
         path: '',
         element: <HotkeyList />
-      },
+      }
     ],
   },
   {
@@ -46,8 +46,15 @@ export const routes: IRouteDefine[] = [
   },
   {
     name: 'notFound',
-    path: '*',
-    element: <Welcome />,
+    index: true,
+    path: '',
+    element: <Navigate to="/dashboard" replace />,
     hidden: true,
   },
+  /* {
+   *   name: 'notFound',
+   *   path: '*',
+   *   element: <Welcome />,
+   *   hidden: true,
+   * }, */
 ];

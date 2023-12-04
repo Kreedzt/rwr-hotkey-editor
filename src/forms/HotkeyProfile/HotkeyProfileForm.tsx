@@ -8,6 +8,7 @@ import { IHotkeyConfigItem, IHotkeyProfileItem } from '../../share/types';
 
 type HotkeyProfileFormProps = {
   item: IHotkeyProfileItem;
+  onSubmit: (formValue: IHotkeyProfileItem) => void;
 };
 
 type FormData = Omit<IHotkeyProfileItem, 'id'>;
@@ -52,6 +53,11 @@ const uiSchema: UiSchema = {
   id: {
     'ui:widget': 'hidden'
   },
+  title: {
+    'ui:attrs': {
+      'size': 'small'
+    }
+  }
 };
 
 const CustomArraySchemaField: FC<FieldProps> = (props) => {
@@ -72,10 +78,10 @@ const fields: RegistryFieldsType = {
   ArraySchemaField: CustomArraySchemaField
 };
 
-const HotkeyProfileForm: FC<HotkeyProfileFormProps> = ({ item }) => {
-  const onSubmit = useCallback((v: FormData) => {
-    console.log('onSubmit', v);
-  }, []);
+const HotkeyProfileForm: FC<HotkeyProfileFormProps> = ({ item, onSubmit: propsSubmit }) => {
+  const onSubmit = useCallback((v: IHotkeyProfileItem) => {
+    propsSubmit(v);
+  }, [propsSubmit]);
 
   return (
     <Box p={2}>
