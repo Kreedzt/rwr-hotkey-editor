@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useState } from 'react';
-import { redirect, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { nanoid } from 'nanoid';
@@ -25,13 +25,14 @@ const getInitData = (): IHotkeyProfileItem => {
 };
 
 const AddHotkey: FC<AddStateProps> = () => {
+  const navigate = useNavigate();
   const [config, setConfig] = useState<IHotkeyProfileItem>(getInitData());
 
   const onSubmit = useCallback(async (v: IHotkeyProfileItem) => {
     console.log('AddState: onSubmit', v);
     await createProfile(v);
-    redirect('/dashboard');
-  }, []);
+    navigate('/dashboard');
+  }, [navigate]);
 
   return (
     <div>

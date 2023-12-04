@@ -1,19 +1,35 @@
 import React, { FC } from 'react';
-import { IHotkeyConfigItem } from '../../share/types';
+import List from '@mui/material/List';
+import { IHotkeyProfileItem } from '../../share/types';
 import HotkeyConfigItem from './HotkeyConfigItem';
 
 type HotkeyListProps = {
-  data: IHotkeyConfigItem[];
+  data: IHotkeyProfileItem[];
+  onActive: (id: string) => void;
+  onEdit: (id: string) => void;
+  onDelete: (id: string) => void;
 };
 
-const HotkeyConfigList: FC<HotkeyListProps> = ({ data }) => {
+const HotkeyConfigList: FC<HotkeyListProps> = ({
+  data,
+  onActive,
+  onEdit,
+  onDelete,
+}) => {
   return (
-    <div>
-      <p>HotkeyConfigList:</p>
+    <List dense={true}>
       {data.map((d) => {
-        return <HotkeyConfigItem key={d.id} data={d} />;
+        return (
+          <HotkeyConfigItem
+            key={d.id}
+            data={d}
+            onActive={onActive}
+            onEdit={onEdit}
+            onDelete={onDelete}
+          />
+        );
       })}
-    </div>
+    </List>
   );
 };
 
