@@ -19,6 +19,7 @@ const HotkeyList: FC = () => {
   }, [navigate]);
 
   const onDelete = useCallback(async (id: string) => {
+    console.log('onDelete', id);
     await deleteProfile(id);
   }, []);
 

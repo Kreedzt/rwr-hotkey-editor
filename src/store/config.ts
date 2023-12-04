@@ -33,19 +33,25 @@ export const createProfile = async (profile: IHotkeyProfileItem) => {
 }
 
 export const updateProfile = async (profile: IHotkeyProfileItem) => {
-  hotKeyConfig.value.hotkeys = hotKeyConfig.value.hotkeys.map((item) => {
-    if (item.id === profile.id) {
-      return profile;
-    }
+  hotKeyConfig.value = {
+    ...hotKeyConfig.value,
+    hotkeys: hotKeyConfig.value.hotkeys.map((item) => {
+      if (item.id === profile.id) {
+        return profile;
+      }
 
-    return item;
-  });
+      return item;
+    })
+  };
 
   await saveProfile();
 }
 
 export const deleteProfile = async (id: string) => {
-  hotKeyConfig.value.hotkeys = hotKeyConfig.value.hotkeys.filter((item) => item.id !== id);
+  hotKeyConfig.value = {
+    ...hotKeyConfig.value,
+    hotkeys: hotKeyConfig.value.hotkeys.filter((item) => item.id !== id)
+  };
 
   await saveProfile();
 }
