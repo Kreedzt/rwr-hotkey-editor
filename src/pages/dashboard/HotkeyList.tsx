@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import { deleteProfile, getProfile, hotKeyConfig } from '../../store/config';
 import HotkeyConfigList from '../../components/hotkey/HotkeyConfigList';
 import { StoreServiceInst } from '../../services/store';
+import { MessageServiceInst } from '../../services/message';
 
 const HotkeyList: FC = () => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const HotkeyList: FC = () => {
       return;
     }
     await StoreServiceInst.writeConfig2Game(profile);
+    MessageServiceInst.success('写入成功!');
   }, []);
 
   const onEdit = useCallback(

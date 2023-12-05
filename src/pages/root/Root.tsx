@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import { initConfig } from '../../store/config';
 import { routes } from '../../routes';
+import GlobalSnackbar from './GlobalSnackbar';
 
 type RootProps = {
   //
@@ -28,6 +29,7 @@ const Root: FC<RootProps> = () => {
             ))}
         </MenuList>
       </div>
+      <GlobalSnackbar />
       <div className="flex-1 h-screen p-2 overflow-y-auto">
         <Outlet />
       </div>
