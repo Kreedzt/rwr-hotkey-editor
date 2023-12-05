@@ -1,7 +1,15 @@
 import { fs, path, invoke } from '@tauri-apps/api';
 import { XMLBuilder, XMLParser } from 'fast-xml-parser';
-import { IHotkeyConfig, IHotkeyRawConfig } from '../share/types';
-import {getInitConfig, getInitRawConfig} from "../share/utils";
+import {
+  IHotkeyConfig,
+  IHotkeyProfileItem,
+  IHotkeyRawConfig,
+} from '../share/types';
+import {
+  getInitConfig,
+  getInitRawConfig,
+  transformProfileConfig2GameConfig,
+} from '../share/utils';
 
 const RWR_CONFIG_FOLDER = 'Running with rifles';
 const RWR_HOTKEYS_FILE = 'hotkeys.xml';
@@ -10,6 +18,8 @@ export const CONFIG_FILE_NAME = 'config.json';
 
 export class StoreService {
   static instance: StoreService;
+
+  configPath: string = '';
 
   constructor() {
     //
@@ -23,11 +33,21 @@ export class StoreService {
     return this.instance;
   }
 
+  async getConfigPath(): Promise<string> {
+    if (!this.configPath) {
+      this.configPath = await path.join(
+        await path.appConfigDir(),
+        CONFIG_FILE_NAME
+      );
+    }
+    return this.configPath;
+  }
+
   /**
    * 初始化配置文件
    */
   async initConfigFile() {
-    const touchFile = await path.join(await path.appConfigDir(), CONFIG_FILE_NAME);
+    const touchFile = await this.getConfigPath();
 
     const sep = path.sep;
 
@@ -36,12 +56,12 @@ export class StoreService {
     const lastFolder = pathRoute.slice(0, -1);
     const lastFolderRoute = lastFolder.join(sep);
 
-    if (!await fs.exists(lastFolderRoute)) {
+    if (!(await fs.exists(lastFolderRoute))) {
       await fs.createDir(lastFolderRoute);
       console.log('initConfigFile: create default folder success');
     }
 
-    if (!await fs.exists(touchFile)) {
+    if (!(await fs.exists(touchFile))) {
       await this.resetConfig();
     }
   }
@@ -119,14 +139,16 @@ export class StoreService {
     });
   }
 
+  async writeConfig2Game(data: IHotkeyProfileItem) {
+    const raw = transformProfileConfig2GameConfig(data);
+    await this.updateRaw(raw);
+  }
+
   /**
    * 更新配置文件中的配置
    */
   async updateConfig(config: IHotkeyConfig) {
-    await fs.writeTextFile(
-      await path.join(await path.appConfigDir(), CONFIG_FILE_NAME),
-      JSON.stringify(config)
-    );
+    await fs.writeTextFile(await this.getConfigPath(), JSON.stringify(config));
   }
 
   /**
@@ -134,7 +156,7 @@ export class StoreService {
    */
   async resetConfig() {
     await fs.writeTextFile(
-      await path.join(await path.appConfigDir(), CONFIG_FILE_NAME),
+      await this.getConfigPath(),
       JSON.stringify(getInitConfig())
     );
   }
@@ -143,9 +165,7 @@ export class StoreService {
    * 从配置文件中读取配置
    */
   async loadConfig(): Promise<IHotkeyConfig> {
-    const jsonStr = await fs.readTextFile(
-      await path.join(await path.appConfigDir(), CONFIG_FILE_NAME)
-    );
+    const jsonStr = await fs.readTextFile(await this.getConfigPath());
     const config = JSON.parse(jsonStr) as IHotkeyConfig;
 
     return config;

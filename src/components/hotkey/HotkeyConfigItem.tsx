@@ -32,7 +32,7 @@ const HotkeyConfigItem: FC<HotkeyListItemProps> = ({
             columnGap: 2,
           }}
         >
-          <Tooltip title="激活">
+          <Tooltip title="应用">
             <IconButton
               edge="end"
               aria-label="active"

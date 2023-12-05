@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "rwr-hotkey-editor",
-    "version": "0.1.0"
+    "version": "0.1.0-alpha"
   },
   "tauri": {
     "allowlist": {
@@ -29,7 +29,12 @@
       },
       "shell": {
         "all": false,
-        "open": true
+        "open": ".*"
+      },
+      "clipboard": {
+        "all": true,
+        "writeText": true,
+        "readText": true
       }
     },
     "bundle": {

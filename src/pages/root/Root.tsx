@@ -11,8 +11,6 @@ type RootProps = {
 };
 
 const Root: FC<RootProps> = () => {
-  initConfig();
-
   return (
     <div className="w-screen h-screen flex">
       <div className="w-[260px] border-r border-grey-500">
@@ -27,7 +25,7 @@ const Root: FC<RootProps> = () => {
                   </MenuItem>
                 )}
               </NavLink>
-          ))}
+            ))}
         </MenuList>
       </div>
       <div className="flex-1 h-screen p-2 overflow-y-auto">

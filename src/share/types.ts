@@ -4,6 +4,7 @@
 export interface IHotkeyRawConfigItem {
   '@_index': string;
   '@_text': string;
+  '@_comment'?: string;
 }
 
 export interface IHotkeyRawConfig {
