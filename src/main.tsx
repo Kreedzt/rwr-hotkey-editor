@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {
   createBrowserRouter,
+  RouteObject,
   RouterProvider,
 } from 'react-router-dom';
 import '@fontsource/roboto/300.css';
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
-    children: routes,
+    children: routes as RouteObject[],
   },
 ]);
 

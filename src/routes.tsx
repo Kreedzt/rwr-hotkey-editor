@@ -7,9 +7,9 @@ import Welcome from './pages/welcome/Welcome';
 import About from './pages/about/About';
 import Settings from './pages/settings/Settings';
 
-type IRouteDefine = RouteObject & {
-  name: string;
+type IRouteDefine = Omit<RouteObject, 'name' | 'children' | 'path'> & {
   path: string;
+  name: string;
   hidden?: boolean;
   children?: IRouteDefine[];
 };
@@ -36,8 +36,8 @@ export const routes: IRouteDefine[] = [
         name: '热键集列表',
         hidden: true,
         path: '',
-        element: <HotkeyList />
-      }
+        element: <HotkeyList />,
+      },
     ],
   },
   {

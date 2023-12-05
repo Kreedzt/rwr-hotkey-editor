@@ -1,11 +1,6 @@
 import { nanoid } from 'nanoid';
 import { getName, getVersion } from '@tauri-apps/api/app';
-import { DashboardVisibleTypeEnum } from './enums';
-import {
-  IHotKeyProfileCreateItem,
-  IHotkeyProfileItem,
-  IHotkeyConfig,
-} from '../share/types';
+import { IHotkeyProfileItem, IHotkeyConfig } from '../share/types';
 import { StoreServiceInst } from '../services/store';
 import { getInitConfig } from '../share/utils';
 import { signal } from '@preact/signals-react';
