@@ -4,6 +4,7 @@ import HotkeyList from './pages/dashboard/HotkeyList';
 import AddHotkey from './pages/dashboard/AddHotkey';
 import EditHotkey from './pages/dashboard/EditHotKey';
 import Welcome from './pages/welcome/Welcome';
+import About from './pages/about/About';
 import Settings from './pages/settings/Settings';
 
 type IRouteDefine = RouteObject & {
@@ -43,6 +44,11 @@ export const routes: IRouteDefine[] = [
     name: '设置',
     path: 'settings',
     element: <Settings />,
+  },
+  {
+    name: '关于',
+    path: 'about',
+    element: <About />,
   },
   {
     name: 'notFound',
