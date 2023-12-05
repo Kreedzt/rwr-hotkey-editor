@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import Box from '@mui/material/Box';
+import Tooltip from '@mui/material/Tooltip';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
@@ -31,28 +32,36 @@ const HotkeyConfigItem: FC<HotkeyListItemProps> = ({
             columnGap: 2,
           }}
         >
-          <IconButton
-            edge="end"
-            aria-label="active"
-            onClick={() => onActive(data.id)}
-          >
-            <ToggleOffIcon />
+          <Tooltip title="激活">
+            <IconButton
+              edge="end"
+              aria-label="active"
+              onClick={() => onActive(data.id)}
+            >
+              <ToggleOffIcon />
             {/* <ToggleOnIcon /> */}
-          </IconButton>
-          <IconButton
-            edge="end"
-            aria-label="edit"
-            onClick={() => onEdit(data.id)}
-          >
-            <EditIcon />
-          </IconButton>
-          <IconButton
-            edge="end"
-            aria-label="delete"
-            onClick={() => onDelete(data.id)}
-          >
-            <DeleteIcon />
-          </IconButton>
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title="编辑">
+            <IconButton
+              edge="end"
+              aria-label="edit"
+              onClick={() => onEdit(data.id)}
+            >
+              <EditIcon />
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title="删除">
+            <IconButton
+              edge="end"
+              aria-label="delete"
+              onClick={() => onDelete(data.id)}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </Tooltip>
         </Box>
       }
     >
