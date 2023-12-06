@@ -1,6 +1,6 @@
 # RWR Hotkey Editor
 
-[![codecov](https://codecov.io/gh/Kreedzt/rwr-imba-qq-bot/branch/master/graph/badge.svg?token=MWGXZH7GO9)](https://codecov.io/gh/Kreedzt/rwr-imba-qq-bot)
+[![codecov](https://codecov.io/gh/Kreedzt/rwr-hotkey-editor/branch/master/graph/badge.svg?token=MWGXZH7GO9)](https://codecov.io/gh/Kreedzt/rwr-hotkey-editor)
 ![build status](https://github.com/Kreedzt/rwr-imba-qq-bot/actions/workflows/ci.yml/badge.svg?branch=master)
 ![rwr_version](https://badgen.net/badge/RWR/1.96/orange)
 
