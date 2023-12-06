@@ -25,7 +25,10 @@ export const createProfile = async (profile: IHotkeyProfileItem) => {
     id: nanoid(),
   };
 
-  hotKeyConfig.value.hotkeys = [...hotKeyConfig.value.hotkeys, newProfile];
+  hotKeyConfig.value = {
+    ...hotKeyConfig.value,
+    hotkeys: [...hotKeyConfig.value.hotkeys, newProfile],
+  };
 
   await saveProfile();
 };

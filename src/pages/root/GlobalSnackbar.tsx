@@ -32,7 +32,7 @@ const GlobalSnackbar: FC<GlobalSnackbarProps> = () => {
         autoHideDuration={3000}
         onClose={onClose}
       >
-        <Alert onClose={onClose} security={globalMessage.value.type}>
+        <Alert onClose={onClose} severity={globalMessage.value.type}>
           {globalMessage.value.title}
         </Alert>
       </Snackbar>
