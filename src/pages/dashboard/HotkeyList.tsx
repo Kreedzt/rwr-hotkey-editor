@@ -3,10 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import HotkeyConfigCard from '../../components/hotkey/HotkeyConfigCard';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import { deleteProfile, getProfile, hotKeyConfig } from '../../store/config';
+import { createProfile, deleteProfile, getProfile, hotKeyConfig } from '../../store/config';
 import HotkeyConfigList from '../../components/hotkey/HotkeyConfigList';
 import { StoreServiceInst } from '../../services/store';
 import { MessageServiceInst } from '../../services/message';
+import { ShareServiceInst } from '../../services/share';
 
 const HotkeyList: FC = () => {
   const navigate = useNavigate();
@@ -32,6 +33,29 @@ const HotkeyList: FC = () => {
   const onDelete = useCallback(async (id: string) => {
     console.log('onDelete', id);
     await deleteProfile(id);
+  }, []);
+
+  const onShare = useCallback(async (id: string) => {
+    console.log('onShare', id);
+    const profile = getProfile(id);
+    if (!profile) {
+      return;
+    }
+
+    await ShareServiceInst.share(profile);
+    MessageServiceInst.success('已复制到剪贴板');
+  }, []);
+
+  const onReadShare = useCallback(async () => {
+    const result = await ShareServiceInst.read();
+
+    if (!result.isValid) {
+      MessageServiceInst.error('读取失败, 配置不合法');
+      return;
+    }
+
+    await createProfile(result.profile);
+    MessageServiceInst.success('已成功读取配置');
   }, []);
 
   return (

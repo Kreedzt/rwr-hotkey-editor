@@ -9,12 +9,14 @@ Quick edit `hotkeys.xml` file tool
 English | [简体中文](README_zhCN.md)
 
 ## Quick Start
+
 Download latest [Release](https://github.com/Kreedzt/rwr-hotkey-editor/releases), double-click exe to run app.
 
 Available features:
 
 -   [x] Save by group
 -   [x] Quick overwrite
+-   [x] Share by clipboard
 
 For `Windows 7` users, please [download](https://developer.microsoft.com/en-us/microsoft-edge/webview2/#download-section) webview2 runtime.
 
