@@ -1,7 +1,7 @@
 # RWR 热键编辑器
 
 [![codecov](https://codecov.io/gh/Kreedzt/rwr-hotkey-editor/branch/master/graph/badge.svg?token=MWGXZH7GO9)](https://codecov.io/gh/Kreedzt/rwr-hotkey-editor)
-![build status](https://github.com/Kreedzt/rwr-imba-qq-bot/actions/workflows/ci.yml/badge.svg?branch=master)
+![build status](https://github.com/Kreedzt/rwr-hotkey-editor/actions/workflows/ci.yml/badge.svg?branch=master)
 ![rwr_version](https://badgen.net/badge/RWR/1.96/orange)
 
 该工具可快速编辑游戏内热键文件: `hotkeys.xml`
