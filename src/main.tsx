@@ -9,13 +9,12 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import { initConfig } from './store/config';
+import { runApp } from './startup';
 import './index.css';
 import Root from './pages/root/Root';
 import { routes } from './routes';
 
-// 初始化配置
-initConfig();
+runApp();
 
 const router = createBrowserRouter([
   {

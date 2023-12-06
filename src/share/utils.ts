@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import {
   IHotkeyConfig,
   IHotkeyProfileItem,
@@ -16,6 +17,19 @@ export const getInitRawConfig = (): IHotkeyRawConfig => {
     hotkeys: {
       hotkey: [],
     },
+  };
+};
+
+export const getInitProfile = (): IHotkeyProfileItem => {
+  return {
+    id: nanoid(),
+    title: '新增热键集',
+    config: [
+      {
+        label: '释放技能',
+        value: '/skill',
+      },
+  ],
   };
 };
 

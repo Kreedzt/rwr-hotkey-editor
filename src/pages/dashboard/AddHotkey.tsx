@@ -5,28 +5,17 @@ import Button from '@mui/material/Button';
 import { nanoid } from 'nanoid';
 import HotkeyProfileForm from '../../forms/HotkeyProfile/HotkeyProfileForm';
 import { IHotkeyProfileItem } from '../../share/types';
+import { getInitProfile } from '../../share/utils';
 import { createProfile } from '../../store/config';
 
 type AddStateProps = {
   //
 };
 
-const getInitData = (): IHotkeyProfileItem => {
-  return {
-    id: nanoid(),
-    title: '新增热键集',
-    config: [
-      {
-        label: '释放技能',
-        value: '/skill',
-      }
-    ],
-  };
-};
 
 const AddHotkey: FC<AddStateProps> = () => {
   const navigate = useNavigate();
-  const [config, setConfig] = useState<IHotkeyProfileItem>(getInitData());
+  const [config, setConfig] = useState<IHotkeyProfileItem>(getInitProfile());
 
   const onSubmit = useCallback(async (v: IHotkeyProfileItem) => {
     console.log('AddState: onSubmit', v);
