@@ -3,11 +3,14 @@ import List from '@mui/material/List';
 import { IHotkeyProfileItem } from '../../share/types';
 import HotkeyConfigItem from './HotkeyConfigItem';
 
+type TEventCallback = (id: string) => void;
+
 type HotkeyListProps = {
   data: IHotkeyProfileItem[];
-  onActive: (id: string) => void;
-  onEdit: (id: string) => void;
-  onDelete: (id: string) => void;
+  onActive: TEventCallback;
+  onEdit: TEventCallback;
+  onDelete: TEventCallback;
+  onShare: TEventCallback;
 };
 
 const HotkeyConfigList: FC<HotkeyListProps> = ({
@@ -15,6 +18,7 @@ const HotkeyConfigList: FC<HotkeyListProps> = ({
   onActive,
   onEdit,
   onDelete,
+  onShare,
 }) => {
   return (
     <List dense={true}>
@@ -26,6 +30,7 @@ const HotkeyConfigList: FC<HotkeyListProps> = ({
             onActive={onActive}
             onEdit={onEdit}
             onDelete={onDelete}
+            onShare={onShare}
           />
         );
       })}

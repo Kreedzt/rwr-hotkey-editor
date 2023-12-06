@@ -16,6 +16,7 @@
 
 -   [x] 分组保存
 -   [x] 快速覆盖
+-   [x] 通过剪贴板分享 
 
 针对 `Windows 7` 用户, 请去 [官网](https://developer.microsoft.com/en-us/microsoft-edge/webview2/#download-section) 下载 `webview2` 运行时
 

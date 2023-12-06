@@ -8,13 +8,17 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import ToggleOnIcon from '@mui/icons-material/ToggleOn';
 import ToggleOffIcon from '@mui/icons-material/ToggleOff';
+import ShareIcon from '@mui/icons-material/Share';
 import { IHotkeyProfileItem } from '../../share/types';
+
+type TEventCallback = (id: string) => void;
 
 type HotkeyListItemProps = {
   data: IHotkeyProfileItem;
-  onActive: (id: string) => void;
-  onEdit: (id: string) => void;
-  onDelete: (id: string) => void;
+  onActive: TEventCallback;
+  onEdit: TEventCallback;
+  onDelete: TEventCallback;
+  onShare: TEventCallback;
 };
 
 const HotkeyConfigItem: FC<HotkeyListItemProps> = ({
@@ -22,6 +26,7 @@ const HotkeyConfigItem: FC<HotkeyListItemProps> = ({
   onActive,
   onEdit,
   onDelete,
+  onShare,
 }) => {
   return (
     <ListItem
@@ -39,7 +44,17 @@ const HotkeyConfigItem: FC<HotkeyListItemProps> = ({
               onClick={() => onActive(data.id)}
             >
               <ToggleOffIcon />
-            {/* <ToggleOnIcon /> */}
+              {/* <ToggleOnIcon /> */}
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title="分享">
+            <IconButton
+              edge="end"
+              aria-label="share"
+              onClick={() => onShare(data.id)}
+            >
+              <ShareIcon />
             </IconButton>
           </Tooltip>
 

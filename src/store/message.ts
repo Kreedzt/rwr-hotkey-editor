@@ -1,4 +1,4 @@
-import { signal } from '@preact/signals-react';
+import { batch, signal } from '@preact/signals-react';
 
 export const globalMessageVisible = signal<boolean>(false);
 
@@ -14,12 +14,14 @@ export const showGlobalMessage = (params: {
   title: string;
   type: 'success' | 'error' | 'warning' | 'info';
 }) => {
-  globalMessage.value = {
-    title: params.title,
-    type: params.type,
-  };
+  batch(() => {
+    globalMessage.value = {
+      title: params.title,
+      type: params.type,
+    };
 
-  globalMessageVisible.value = true;
+    globalMessageVisible.value = true;
+  });
 };
 
 export const hideGlobalMessage = () => {

@@ -6,6 +6,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { initConfig } from '../../store/config';
 import { routes } from '../../routes';
 import GlobalSnackbar from './GlobalSnackbar';
+import GlobalDialog from './GlobalDialog';
 
 type RootProps = {
   //
@@ -30,6 +31,7 @@ const Root: FC<RootProps> = () => {
         </MenuList>
       </div>
       <GlobalSnackbar />
+      <GlobalDialog />
       <div className="flex-1 h-screen p-2 overflow-y-auto">
         <Outlet />
       </div>

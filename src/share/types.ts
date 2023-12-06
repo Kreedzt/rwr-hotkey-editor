@@ -33,3 +33,9 @@ export type IHotkeyConfig = {
 };
 
 export type IHotKeyProfileCreateItem = Omit<IHotkeyProfileItem, 'id'>;
+
+// 分享配置
+export interface IShareProfileItem {
+  type: 'profile',
+  value: Omit<IHotkeyProfileItem, 'id'>;
+}
