@@ -1,60 +1,60 @@
-# RWR 热键编辑器
+# RWR Hotkey Editor
 
-![license](https://badgen.net/github/license/Kreedzt/rwr-hotkey-editor)
-![latest release](https://badgen.net/github/release/Kreedzt/rwr-hotkey-editor)
-![commits count](https://badgen.net/github/commits/Kreedzt/rwr-hotkey-editor)
-![last commit](https://badgen.net/github/last-commit/Kreedzt/rwr-hotkey-editor)
+[![codecov](https://codecov.io/gh/Kreedzt/rwr-imba-qq-bot/branch/master/graph/badge.svg?token=MWGXZH7GO9)](https://codecov.io/gh/Kreedzt/rwr-imba-qq-bot)
+![build status](https://github.com/Kreedzt/rwr-imba-qq-bot/actions/workflows/ci.yml/badge.svg?branch=master)
+![rwr_version](https://badgen.net/badge/RWR/1.96/orange)
 
-该工具可快速编辑游戏内热键文件: `hotkeys.xml`
+Quick edit `hotkeys.xml` file tool
 
-[English](README_en.md) | 简体中文
+English | [简体中文](README_zhCN.md)
 
-## 快速上手
+## Quick Start
+Download latest [Release](https://github.com/Kreedzt/rwr-hotkey-editor/releases), double-click exe to run app.
 
-去 [Release](https://github.com/Kreedzt/rwr-hotkey-editor/releases) 页面下载最新的构建包, 双击使用即可
+Available features:
 
-当前应用包含如下功能:
+-   [x] Save by group
+-   [x] Quick overwrite
 
--   [ ] 分组保存
--   [ ] 快速覆盖
+For `Windows 7` users, please [download](https://developer.microsoft.com/en-us/microsoft-edge/webview2/#download-section) webview2 runtime.
 
-针对 `Windows 7` 用户, 请去 [官网](https://developer.microsoft.com/en-us/microsoft-edge/webview2/#download-section) 下载 `webview2` 运行时
+## Development
 
-## 开发
-
-该项目是基于 [tauri](https://tauri.app/) 进行创建的项目, 同时依赖以下 2 个语言环境:
+This project is based on [tauri](https://tauri.app/),  depend on the following 2 language environments at the same time:
 
 -   [Nodejs](https://nodejs.org/en/)
 -   [Rust](https://www.rust-lang.org/)
 
-在安装好环境后, 本项目依赖 `pnpm` 进行前端包管理
+After installing the environment, this project relies on `pnpm` for front-end package management
 
-1. 安装 `pnpm`
+1. Install `pnpm`
 
 ```bash
 npm i -g pnpm
 ```
 
-2. 使用 `pnpm` 安装前端依赖包
+2. Use `pnpm` install dependencies
 
 ```bash
 pnpm i
 ```
 
-3. 启动开发环境
+3. Start development server
 
 ```
 pnpm tauri dev
 ```
 
-## 构建
+## Build
 
-参阅 [tauri](https://tauri.app/zh/v1/guides/building/) 文档, 使用如下命令构建:
+Refer to the [tauri](https://tauri.app/zh/v1/guides/building/) documentation, and use the following command to build.
 
 ```bash
 pnpm tauri build
 ```
 
-## 协议
+## License
 
 -   [GPLv3](https://opensource.org/licenses/GPL-3.0)
+
+
