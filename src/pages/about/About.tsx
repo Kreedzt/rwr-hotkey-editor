@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import { SOURCE_CODE_URL, AUTHORS } from '../../constants';
-import { appInfo } from '../../store/config';
+import { appInfo } from '../../store/app';
 
 const About: FC = () => {
     const appInfoVal = appInfo.value;

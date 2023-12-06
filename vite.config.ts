@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
@@ -28,5 +29,16 @@ export default defineConfig(async () => ({
     minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,
     // produce sourcemaps for debug builds
     sourcemap: !!process.env.TAURI_DEBUG,
+  },
+  test: {
+    globals: true,
+    watch: false,
+    coverage: {
+      all: true,
+      include: ['src'],
+      provider: 'istanbul', // or 'c8',
+      reporter: ['text', 'json', 'cobertura', 'html'],
+    },
+    includeSource: ['src'],
   },
 }));
