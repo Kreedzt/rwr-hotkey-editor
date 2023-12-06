@@ -57,7 +57,9 @@ export class StoreService {
     const lastFolderRoute = lastFolder.join(sep);
 
     if (!(await fs.exists(lastFolderRoute))) {
-      await fs.createDir(lastFolderRoute);
+      await fs.createDir(lastFolderRoute, {
+        recursive: true
+      });
       console.log('initConfigFile: create default folder success');
     }
 

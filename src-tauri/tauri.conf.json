@@ -62,13 +62,14 @@
         "title": "rwr-hotkey-editor",
         "width": 1024,
         "height": 768,
-        "visible": false
+        "visible": false,
+        "label": "main"
       },
       {
         "fullscreen": false,
         "resizable": true,
         "title": "rwr-hotkey-editor",
-        "url": "splashscreen.html",
+        "url": "/splashscreen.html",
         "label": "splashscreen",
         "width": 400,
         "height": 200,
